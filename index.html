@@ -3,97 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IDX Studios - Isuru Dilshan | Video Editor</title>
+    <title>Isuru Dilshan - Video Editor</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        /* Basic Styles */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            text-align: center;
+            background-color: #f0f0f0;
+            color: #333;
         }
 
         header {
-            background-color: #111;
+            background-color: #222;
             color: white;
-            padding: 40px;
+            padding: 50px 20px;
+            text-align: center;
         }
 
         header h1 {
-            font-size: 3em;
-            margin: 0;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
         }
 
         .cta-button {
-            background-color: #008CBA;
+            background-color: #FFA500;
             padding: 15px 30px;
             color: white;
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
-            margin-top: 20px;
+            font-size: 1.1em;
         }
 
-        .about, .services, .portfolio, .contact {
+        section {
             padding: 50px 20px;
-            text-align: center;
         }
 
         .section-title {
-            font-size: 2em;
+            font-size: 2.5em;
             font-weight: 600;
             margin-bottom: 20px;
         }
 
+        .about p, .services ul, .portfolio-gallery {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .services ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .services ul li {
+            background: #ffeb3b;
+            color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
         .portfolio-gallery {
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             flex-wrap: wrap;
+            gap: 20px;
             margin-top: 20px;
         }
 
         .portfolio-gallery iframe {
             width: 300px;
             height: 170px;
-            margin: 10px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         footer {
-            background: #111;
+            background-color: #222;
             color: white;
             padding: 20px;
             text-align: center;
         }
 
         footer a {
-            color: #008CBA;
+            color: #FFA500;
             text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer ul {
+            padding: 0;
+            list-style-type: none;
+        }
+
+        footer ul li {
+            display: inline;
+            margin: 0 10px;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>IDX Studios - Isuru Dilshan</h1>
-    <p>Professional Video Editing & Creative Solutions</p>
-    <a href="https://wa.me/94753568487" class="cta-button">Contact Me</a>
+    <h1>Isuru Dilshan</h1>
+    <p>Professional Video Editor | Creative Storyteller</p>
+    <a href="https://wa.me/94753568487" class="cta-button">Get in Touch</a>
 </header>
 
 <section class="about">
     <h2 class="section-title">About Me</h2>
-    <p>Hello there! I'm Isuru Dilshan, an undergraduate at the University of Colombo and a passionate video editor with over 4 years of experience. I specialize in transforming raw footage into captivating stories, whether it’s for YouTube, social media, or professional projects. From cinematic edits to dynamic transitions and eye-catching effects, I bring creative ideas to life with precision and style. My expertise spans across gaming highlights, social media reels, promotional videos, and beyond. Let’s work together to make your visuals stand out and leave a lasting impression!</p>
+    <p>Hello! I'm Isuru Dilshan, an undergraduate at the University of Colombo and a video editor with 4+ years of experience. I specialize in creating engaging content for YouTube, Instagram, Facebook, and other platforms. I am passionate about bringing stories to life with dynamic visuals, motion graphics, color grading, and smooth transitions. My goal is to help you elevate your content and leave a lasting impression on your audience.</p>
 </section>
 
 <section class="services">
-    <h2 class="section-title">My Services</h2>
+    <h2 class="section-title">Services</h2>
     <ul>
         <li>YouTube Video Editing</li>
-        <li>Social Media Video Creation (TikTok, Instagram Reels)</li>
+        <li>Social Media Video Creation (Reels, TikToks)</li>
         <li>Gaming Highlights</li>
-        <li>Corporate Promotional Videos</li>
+        <li>Corporate & Promotional Videos</li>
         <li>Music Videos</li>
         <li>Vlogs and Tutorials</li>
     </ul>
@@ -102,38 +137,24 @@
 <section class="portfolio">
     <h2 class="section-title">Portfolio</h2>
     <div class="portfolio-gallery">
-        <!-- Embed YouTube videos -->
         <div>
             <h3>Video 1 - YouTube</h3>
             <iframe src="https://www.youtube.com/embed/T91iM6SCtbQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <a href="https://youtu.be/T91iM6SCtbQ" target="_blank">Watch on YouTube</a>
         </div>
         <div>
             <h3>Video 2 - YouTube</h3>
             <iframe src="https://www.youtube.com/embed/LuASVVQbDK0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <a href="https://youtu.be/LuASVVQbDK0" target="_blank">Watch on YouTube</a>
         </div>
         <div>
             <h3>Video 3 - Facebook</h3>
             <iframe src="https://www.facebook.com/video/embed?video_id=1As7wecrdd" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <a href="https://web.facebook.com/share/v/1As7wecrdd/" target="_blank">Watch on Facebook</a>
-        </div>
-        <div>
-            <h3>Video 4 - Facebook</h3>
-            <iframe src="https://www.facebook.com/video/embed?video_id=14vPenz39N" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <a href="https://web.facebook.com/share/v/14vPenz39N/" target="_blank">Watch on Facebook</a>
-        </div>
-        <div>
-            <h3>Video 5 - Facebook</h3>
-            <iframe src="https://www.facebook.com/video/embed?video_id=1AzhL8pe2F" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <a href="https://web.facebook.com/share/v/1AzhL8pe2F/" target="_blank">Watch on Facebook</a>
         </div>
     </div>
 </section>
 
 <section class="contact">
-    <h2 class="section-title">Let's Get in Touch</h2>
-    <p>If you're ready to start your project or want to know more, don't hesitate to get in touch with me.</p>
+    <h2 class="section-title">Contact</h2>
+    <p>If you'd like to work together or have any questions, feel free to reach out to me!</p>
     <ul>
         <li><a href="https://wa.me/94753568487">WhatsApp</a></li>
         <li><a href="https://www.linkedin.com/in/isuru-dilshan-74b793338?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">LinkedIn</a></li>
