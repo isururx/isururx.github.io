@@ -46,23 +46,19 @@
             margin-bottom: 20px;
         }
 
-        .canvas-container {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            background-color: #222;
+        .portfolio-gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
         }
 
-        .portfolio-gallery img {
-            width: 100%;
-            max-width: 300px;
+        .portfolio-gallery iframe {
+            width: 300px;
+            height: 170px;
             margin: 10px;
             border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .portfolio-gallery img:hover {
-            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         footer {
@@ -86,10 +82,6 @@
     <a href="https://wa.me/94753568487" class="cta-button">Contact Me</a>
 </header>
 
-<div class="canvas-container">
-    <canvas id="myCanvas"></canvas>
-</div>
-
 <section class="about">
     <h2 class="section-title">About Me</h2>
     <p>Hello there! I'm Isuru Dilshan, an undergraduate at the University of Colombo and a passionate video editor with over 4 years of experience. I specialize in transforming raw footage into captivating stories, whether it’s for YouTube, social media, or professional projects. From cinematic edits to dynamic transitions and eye-catching effects, I bring creative ideas to life with precision and style. My expertise spans across gaming highlights, social media reels, promotional videos, and beyond. Let’s work together to make your visuals stand out and leave a lasting impression!</p>
@@ -110,11 +102,32 @@
 <section class="portfolio">
     <h2 class="section-title">Portfolio</h2>
     <div class="portfolio-gallery">
-        <a href="https://youtu.be/T91iM6SCtbQ" target="_blank"><img src="https://via.placeholder.com/300" alt="YouTube Video 1"></a>
-        <a href="https://youtu.be/LuASVVQbDK0" target="_blank"><img src="https://via.placeholder.com/300" alt="YouTube Video 2"></a>
-        <a href="https://web.facebook.com/share/v/1As7wecrdd/" target="_blank"><img src="https://via.placeholder.com/300" alt="Facebook Video 1"></a>
-        <a href="https://web.facebook.com/share/v/14vPenz39N/" target="_blank"><img src="https://via.placeholder.com/300" alt="Facebook Video 2"></a>
-        <a href="https://web.facebook.com/share/v/1AzhL8pe2F/" target="_blank"><img src="https://via.placeholder.com/300" alt="Facebook Video 3"></a>
+        <!-- Embed YouTube videos -->
+        <div>
+            <h3>Video 1 - YouTube</h3>
+            <iframe src="https://www.youtube.com/embed/T91iM6SCtbQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <a href="https://youtu.be/T91iM6SCtbQ" target="_blank">Watch on YouTube</a>
+        </div>
+        <div>
+            <h3>Video 2 - YouTube</h3>
+            <iframe src="https://www.youtube.com/embed/LuASVVQbDK0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <a href="https://youtu.be/LuASVVQbDK0" target="_blank">Watch on YouTube</a>
+        </div>
+        <div>
+            <h3>Video 3 - Facebook</h3>
+            <iframe src="https://www.facebook.com/video/embed?video_id=1As7wecrdd" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <a href="https://web.facebook.com/share/v/1As7wecrdd/" target="_blank">Watch on Facebook</a>
+        </div>
+        <div>
+            <h3>Video 4 - Facebook</h3>
+            <iframe src="https://www.facebook.com/video/embed?video_id=14vPenz39N" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <a href="https://web.facebook.com/share/v/14vPenz39N/" target="_blank">Watch on Facebook</a>
+        </div>
+        <div>
+            <h3>Video 5 - Facebook</h3>
+            <iframe src="https://www.facebook.com/video/embed?video_id=1AzhL8pe2F" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <a href="https://web.facebook.com/share/v/1AzhL8pe2F/" target="_blank">Watch on Facebook</a>
+        </div>
     </div>
 </section>
 
@@ -131,56 +144,6 @@
 <footer>
     <p>IDX Studios | <a href="mailto:isurudilshan@example.com">Email Me</a></p>
 </footer>
-
-<script>
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-
-    // Make the canvas fill the screen width and height
-    canvas.width = window.innerWidth;
-    canvas.height = 500;
-
-    // Function to create gradient background
-    function drawGradient() {
-        var gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-        gradient.addColorStop(0, "orange");
-        gradient.addColorStop(0.5, "blue");
-        gradient.addColorStop(1, "green");
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-
-    // Function to create moving circle animation
-    var circleX = 0;
-    var circleY = canvas.height / 2;
-    var circleRadius = 40;
-    var circleSpeed = 2;
-
-    function drawCircle() {
-        ctx.beginPath();
-        ctx.arc(circleX, circleY, circleRadius, 0, 2 * Math.PI);
-        ctx.fillStyle = "white";
-        ctx.fill();
-        ctx.closePath();
-    }
-
-    function updateCanvas() {
-        drawGradient();
-        drawCircle();
-
-        // Move the circle
-        circleX += circleSpeed;
-        if (circleX > canvas.width || circleX < 0) {
-            circleSpeed = -circleSpeed;
-        }
-
-        // Request the next frame
-        requestAnimationFrame(updateCanvas);
-    }
-
-    // Start the animation
-    updateCanvas();
-</script>
 
 </body>
 </html>
