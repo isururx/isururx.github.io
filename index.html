@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Canvas | IDX Studios</title>
+    <title>IDX Studios - Isuru Dilshan | Video Editor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
@@ -24,13 +25,6 @@
             margin: 0;
         }
 
-        .canvas-container {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            background-color: #222;
-        }
-
         .cta-button {
             background-color: #008CBA;
             padding: 15px 30px;
@@ -39,6 +33,48 @@
             border-radius: 5px;
             font-weight: bold;
             margin-top: 20px;
+        }
+
+        .about, .services, .portfolio, .contact {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2em;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .canvas-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background-color: #222;
+        }
+
+        .portfolio-gallery img {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #111;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #008CBA;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -53,6 +89,48 @@
 <div class="canvas-container">
     <canvas id="myCanvas"></canvas>
 </div>
+
+<section class="about">
+    <h2 class="section-title">About Me</h2>
+    <p>Hello there! I'm Isuru Dilshan, an undergraduate at the University of Colombo and a passionate video editor with over 4 years of experience. I specialize in transforming raw footage into captivating stories, whether it’s for YouTube, social media, or professional projects. From cinematic edits to dynamic transitions and eye-catching effects, I bring creative ideas to life with precision and style. My expertise spans across gaming highlights, social media reels, promotional videos, and beyond. Let’s work together to make your visuals stand out and leave a lasting impression!</p>
+</section>
+
+<section class="services">
+    <h2 class="section-title">My Services</h2>
+    <ul>
+        <li>YouTube Video Editing</li>
+        <li>Social Media Video Creation (TikTok, Instagram Reels)</li>
+        <li>Gaming Highlights</li>
+        <li>Corporate Promotional Videos</li>
+        <li>Music Videos</li>
+        <li>Vlogs and Tutorials</li>
+    </ul>
+</section>
+
+<section class="portfolio">
+    <h2 class="section-title">Portfolio</h2>
+    <div class="portfolio-gallery">
+        <a href="https://youtu.be/T91iM6SCtbQ" target="_blank"><img src="https://via.placeholder.com/300" alt="YouTube Video 1"></a>
+        <a href="https://youtu.be/LuASVVQbDK0" target="_blank"><img src="https://via.placeholder.com/300" alt="YouTube Video 2"></a>
+        <a href="https://web.facebook.com/share/v/1As7wecrdd/" target="_blank"><img src="https://via.placeholder.com/300" alt="Facebook Video 1"></a>
+        <a href="https://web.facebook.com/share/v/14vPenz39N/" target="_blank"><img src="https://via.placeholder.com/300" alt="Facebook Video 2"></a>
+        <a href="https://web.facebook.com/share/v/1AzhL8pe2F/" target="_blank"><img src="https://via.placeholder.com/300" alt="Facebook Video 3"></a>
+    </div>
+</section>
+
+<section class="contact">
+    <h2 class="section-title">Let's Get in Touch</h2>
+    <p>If you're ready to start your project or want to know more, don't hesitate to get in touch with me.</p>
+    <ul>
+        <li><a href="https://wa.me/94753568487">WhatsApp</a></li>
+        <li><a href="https://www.linkedin.com/in/isuru-dilshan-74b793338?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">LinkedIn</a></li>
+        <li><a href="https://isururx.github.io">GitHub</a></li>
+    </ul>
+</section>
+
+<footer>
+    <p>IDX Studios | <a href="mailto:isurudilshan@example.com">Email Me</a></p>
+</footer>
 
 <script>
     var canvas = document.getElementById("myCanvas");
