@@ -1,219 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Isuru Dilshan - Video Editor</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #fdfdfd;
-            color: #2c2c2c;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Isuru Dilshan - Video Editor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-        header {
-            background-color: #1a1a1a;
-            color: #fff;
-            text-align: center;
-            padding: 80px 20px;
-        }
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #fdfdfd;
+      color: #2c2c2c;
+    }
 
-        header h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
+    header {
+      background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px;
+      animation: fadeIn 2s ease-out;
+    }
 
-        header p {
-            font-size: 1.3em;
-            font-weight: 300;
-        }
+    header h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
 
-        .cta-button {
-            display: inline-block;
-            margin-top: 30px;
-            background-color: #d4af37;
-            color: #fff;
-            text-decoration: none;
-            padding: 15px 35px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease;
-        }
+    header p {
+      font-size: 1.3em;
+      font-weight: 300;
+    }
 
-        .cta-button:hover {
-            background-color: #b9962d;
-        }
+    .cta-button {
+      display: inline-block;
+      margin-top: 30px;
+      background-color: #d4af37;
+      color: #fff;
+      text-decoration: none;
+      padding: 15px 35px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1em;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
 
-        section {
-            padding: 60px 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
+    .cta-button:hover {
+      background-color: #b9962d;
+      transform: scale(1.05);
+    }
 
-        .section-title {
-            font-size: 2.4em;
-            font-family: 'Poppins', sans-serif;
-            margin-bottom: 30px;
-            text-align: center;
-            color: #1a1a1a;
-        }
+    section {
+      padding: 70px 20px;
+      max-width: 1000px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
 
-        .about p {
-            font-size: 1.1em;
-            line-height: 1.8;
-            text-align: justify;
-        }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-        .services ul {
-            list-style: none;
-            padding: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-        }
+    .section-title {
+      font-size: 2.4em;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 30px;
+      text-align: center;
+      color: #1a1a1a;
+    }
 
-        .services ul li {
-            background-color: #f7f7f7;
-            padding: 15px;
-            border-left: 5px solid #d4af37;
-            border-radius: 10px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease;
-        }
+    .about p {
+      font-size: 1.1em;
+      line-height: 1.8;
+      text-align: justify;
+    }
 
-        .services ul li:hover {
-            transform: translateY(-3px);
-        }
+    .services ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
 
-        .portfolio-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-        }
+    .services ul li {
+      background-color: #fff;
+      padding: 15px;
+      border-left: 5px solid #d4af37;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
 
-        .portfolio-gallery div {
-            text-align: center;
-        }
+    .services ul li:hover {
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+      transform: translateY(-5px);
+    }
 
-        .portfolio-gallery h3 {
-            font-size: 1.1em;
-            margin-bottom: 10px;
-        }
+    .portfolio-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
 
-        .portfolio-gallery iframe {
-            width: 320px;
-            height: 180px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border: none;
-        }
+    .portfolio-gallery div {
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
 
-        .contact p {
-            font-size: 1.1em;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    .portfolio-gallery h3 {
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
 
-        .contact ul {
-            text-align: center;
-            padding: 0;
-            list-style: none;
-        }
+    .portfolio-gallery iframe {
+      width: 320px;
+      height: 180px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: none;
+      transition: transform 0.3s ease;
+    }
 
-        .contact ul li {
-            display: inline-block;
-            margin: 0 15px;
-        }
+    .portfolio-gallery iframe:hover {
+      transform: scale(1.03);
+    }
 
-        .contact ul li a {
-            color: #d4af37;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
+    .contact p {
+      font-size: 1.1em;
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-        .contact ul li a:hover {
-            color: #b9962d;
-        }
+    .contact ul {
+      text-align: center;
+      padding: 0;
+      list-style: none;
+    }
 
-        footer {
-            background-color: #1a1a1a;
-            color: #fff;
-            text-align: center;
-            padding: 25px 20px;
-        }
+    .contact ul li {
+      display: inline-block;
+      margin: 0 15px;
+    }
 
-        footer a {
-            color: #d4af37;
-            text-decoration: none;
-        }
+    .contact ul li a {
+      color: #d4af37;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
 
-        footer a:hover {
-            color: #b9962d;
-        }
-    </style>
+    .contact ul li a:hover {
+      color: #b9962d;
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 25px 20px;
+    }
+
+    footer a {
+      color: #d4af37;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #b9962d;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
 
 <header>
-    <h1>Isuru Dilshan</h1>
-    <p>Professional Video Editor | Creative Storyteller</p>
-    <a href="https://wa.me/94753568487" class="cta-button">Get in Touch</a>
+  <h1>Isuru Dilshan</h1>
+  <p>Professional Video Editor | Creative Storyteller</p>
+  <a href="https://wa.me/94753568487" class="cta-button">Get in Touch</a>
 </header>
 
 <section class="about">
-    <h2 class="section-title">About Me</h2>
-    <p>Hello! I'm Isuru Dilshan, an undergraduate at the University of Colombo and a video editor with 4+ years of experience. I specialize in creating engaging content for YouTube, Instagram, Facebook, and other platforms. I am passionate about bringing stories to life with dynamic visuals, motion graphics, color grading, and smooth transitions. My goal is to help you elevate your content and leave a lasting impression on your audience.</p>
+  <h2 class="section-title">About Me</h2>
+  <p>Hello! I'm Isuru Dilshan, an undergraduate at the University of Colombo and a video editor with 4+ years of experience. I specialize in creating engaging content for YouTube, Instagram, Facebook, and other platforms. I am passionate about bringing stories to life with dynamic visuals, motion graphics, color grading, and smooth transitions. My goal is to help you elevate your content and leave a lasting impression on your audience.</p>
 </section>
 
 <section class="services">
-    <h2 class="section-title">Services</h2>
-    <ul>
-        <li>YouTube Video Editing</li>
-        <li>Social Media Video Creation (Reels, TikToks)</li>
-        <li>Gaming Highlights</li>
-        <li>Corporate & Promotional Videos</li>
-        <li>Music Videos</li>
-        <li>Vlogs and Tutorials</li>
-    </ul>
+  <h2 class="section-title">Services</h2>
+  <ul>
+    <li>YouTube Video Editing</li>
+    <li>Social Media Video Creation (Reels, TikToks)</li>
+    <li>Gaming Highlights</li>
+    <li>Corporate & Promotional Videos</li>
+    <li>Music Videos</li>
+    <li>Vlogs and Tutorials</li>
+  </ul>
 </section>
 
 <section class="portfolio">
-    <h2 class="section-title">Portfolio</h2>
-    <div class="portfolio-gallery">
-        <div>
-            <h3>Video 1 - YouTube</h3>
-            <iframe src="https://www.youtube.com/embed/T91iM6SCtbQ" title="Video 1"></iframe>
-        </div>
-        <div>
-            <h3>Video 2 - YouTube</h3>
-            <iframe src="https://www.youtube.com/embed/LuASVVQbDK0" title="Video 2"></iframe>
-        </div>
-        <div>
-            <h3>Video 3 - Facebook</h3>
-            <iframe src="https://www.facebook.com/video/embed?video_id=1As7wecrdd" title="Video 3"></iframe>
-        </div>
+  <h2 class="section-title">Portfolio</h2>
+  <div class="portfolio-gallery">
+    <div>
+      <h3>Video 1 - YouTube</h3>
+      <iframe src="https://www.youtube.com/embed/T91iM6SCtbQ" title="Video 1"></iframe>
     </div>
+    <div>
+      <h3>Video 2 - YouTube</h3>
+      <iframe src="https://www.youtube.com/embed/LuASVVQbDK0" title="Video 2"></iframe>
+    </div>
+    <div>
+      <h3>Video 3 - Facebook</h3>
+      <iframe src="https://www.facebook.com/video/embed?video_id=1As7wecrdd" title="Video 3"></iframe>
+    </div>
+  </div>
 </section>
 
 <section class="contact">
-    <h2 class="section-title">Contact</h2>
-    <p>If you'd like to work together or have any questions, feel free to reach out to me!</p>
-    <ul>
-        <li><a href="https://wa.me/94753568487">WhatsApp</a></li>
-        <li><a href="https://www.linkedin.com/in/isuru-dilshan-74b793338">LinkedIn</a></li>
-        <li><a href="https://isururx.github.io">GitHub</a></li>
-    </ul>
+  <h2 class="section-title">Contact</h2>
+  <p>If you'd like to work together or have any questions, feel free to reach out to me!</p>
+  <ul>
+    <li><a href="https://wa.me/94753568487">WhatsApp</a></li>
+    <li><a href="https://www.linkedin.com/in/isuru-dilshan-74b793338">LinkedIn</a></li>
+    <li><a href="https://isururx.github.io">GitHub</a></li>
+  </ul>
 </section>
 
 <footer>
-    <p>© 2025 IDX Studios | <a href="mailto:isurudilshan@example.com">Email Me</a></p>
+  <p>© 2025 IDX Studios | <a href="mailto:isurudilshan@example.com">Email Me</a></p>
 </footer>
+
+<script>
+  // Scroll reveal animation
+  const sections = document.querySelectorAll("section");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  sections.forEach(section => observer.observe(section));
+</script>
 
 </body>
 </html>
