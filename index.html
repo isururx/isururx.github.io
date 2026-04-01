@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-image-aframe.prod.js"></script>
@@ -11,14 +11,6 @@
       margin: 0;
       overflow: hidden;
     }
-
-    a-scene {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-    }
   </style>
 </head>
 
@@ -26,34 +18,42 @@
 
 <a-scene 
   mindar-image="imageTargetSrc: targets.mind; autoStart: true;"
-  embedded
   color-space="sRGB"
   vr-mode-ui="enabled: false"
   device-orientation-permission-ui="enabled: true"
+  renderer="logarithmicDepthBuffer: true;"
 >
 
   <!-- Camera -->
   <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-  <!-- IMAGE TARGET -->
+  <!-- Target -->
   <a-entity mindar-image-target="targetIndex: 0">
 
-    <!-- TEXT (BIGGER + CLEAR) -->
-    <a-text value="IT Department 💻"
-            position="0 0.6 0"
-            scale="1.5 1.5 1.5"
-            align="center"
-            color="yellow"
-            width="4">
+    <!-- TEXT PANEL -->
+    <a-plane 
+      color="black" 
+      opacity="0.7" 
+      width="1.5" 
+      height="0.6"
+      position="0 0.6 0.1">
+    </a-plane>
+
+    <!-- TEXT -->
+    <a-text 
+      value="IT Department 💻"
+      color="white"
+      align="center"
+      width="2"
+      position="0 0.6 0.2">
     </a-text>
 
     <!-- BOX -->
-    <a-box color="blue"
-           position="0 0 0"
-           depth="0.3"
-           height="0.3"
-           width="0.3"
-           animation="property: rotation; to: 0 360 0; loop: true; dur: 3000">
+    <a-box 
+      color="blue"
+      position="0 0 0.2"
+      scale="0.3 0.3 0.3"
+      animation="property: rotation; to: 0 360 0; loop: true; dur: 3000">
     </a-box>
 
   </a-entity>
