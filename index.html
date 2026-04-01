@@ -2,24 +2,8 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-image-aframe.prod.js"></script>
-  <script>
-document.querySelector("#start-btn").addEventListener("click", async () => {
-  const scene = document.querySelector("a-scene");
-  const mindarSystem = scene.systems["mindar-image-system"];
-
-  try {
-    await mindarSystem.start();
-    document.querySelector("#start-btn").style.display = "none";
-    console.log("Camera started ✅");
-  } catch (err) {
-    alert("Camera failed ❌: " + err);
-  }
-});
-</script>
-
   <style>
     html, body {
       margin: 0;
@@ -27,80 +11,100 @@ document.querySelector("#start-btn").addEventListener("click", async () => {
       overflow: hidden;
       background: black;
     }
+
+    a-scene {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+
+    video {
+      display: block !important;
+      position: fixed !important;
+      top: 0 !important; left: 0 !important;
+      width: 100% !important; height: 100% !important;
+      object-fit: cover !important;
+      z-index: 0 !important;
+    }
+
+    canvas {
+      position: fixed !important;
+      top: 0 !important; left: 0 !important;
+      width: 100% !important; height: 100% !important;
+      z-index: 1 !important;
+      pointer-events: none !important;
+    }
+
+    #start-btn {
+      position: fixed !important;
+      z-index: 9999 !important;
+      top: 40% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      padding: 15px 25px !important;
+      font-size: 18px !important;
+      background: #00c853 !important;
+      color: white !important;
+      border: none !important;
+      border-radius: 10px !important;
+      cursor: pointer !important;
+      pointer-events: auto !important;
+    }
   </style>
 </head>
-
 <body>
 
-<button id="start-btn"
-  style="
-  position: fixed;
-  z-index: 999;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 15px 25px;
-  font-size: 18px;
-  background: #00c853;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  ">
-  Start AR 🚀
-</button>
-<a-scene
-  mindar-image="imageTargetSrc: targets.mind;"
-  vr-mode-ui="enabled: false"
-  device-orientation-permission-ui="enabled: true"
-  renderer="antialias: true; alpha: true"
-  id="scene"
->
+  <button id="start-btn">Start AR 🚀</button>
 
-  <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+  <a-scene
+    embedded
+    mindar-image="imageTargetSrc: targets.mind; autoStart: false;"
+    vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: true"
+    renderer="antialias: true; alpha: true"
+    id="scene"
+  >
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-  <a-entity mindar-image-target="targetIndex: 0">
-    <a-text value="WORKING ✅"
-            color="yellow"
-            position="0 0 0.3"
-            width="3">
-    </a-text>
-  </a-entity>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-text
+        value="WORKING ✅"
+        color="yellow"
+        position="0 0 0.3"
+        width="3">
+      </a-text>
+    </a-entity>
+  </a-scene>
 
-</a-scene>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const scene = document.querySelector("#scene");
+      const btn = document.querySelector("#start-btn");
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const scene = document.querySelector("#scene");
+      scene.addEventListener("arReady", () => console.log("AR Ready ✅"));
+      scene.addEventListener("arError", () => alert("Camera failed to start. Check permissions."));
 
-  scene.addEventListener("renderstart", () => {
-    console.log("Scene started");
-  });
+      btn.addEventListener("click", async () => {
+        if (!scene.hasLoaded) {
+          await new Promise(resolve => scene.addEventListener("loaded", resolve, { once: true }));
+        }
 
-  scene.addEventListener("arReady", () => {
-    console.log("AR Ready ✅");
-  });
+        const mindarSystem = scene.systems["mindar-image-system"];
+        if (!mindarSystem) {
+          alert("MindAR system not found.");
+          return;
+        }
 
-  scene.addEventListener("arError", () => {
-    console.log("AR ERROR ❌");
-    alert("Camera failed to start. Check permissions.");
-  });
-});
-</script>
-
-<script>
-document.querySelector("#start-btn").addEventListener("click", async () => {
-  const scene = document.querySelector("a-scene");
-  const mindarSystem = scene.systems["mindar-image-system"];
-
-  try {
-    await mindarSystem.start();
-    document.querySelector("#start-btn").style.display = "none";
-    console.log("Camera started ✅");
-  } catch (err) {
-    alert("Camera failed ❌: " + err);
-  }
-});
-</script>
+        try {
+          await mindarSystem.start();
+          btn.style.display = "none";
+          console.log("Camera started ✅");
+        } catch (err) {
+          alert("Camera failed ❌: " + err);
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
