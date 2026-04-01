@@ -5,6 +5,20 @@
 
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-image-aframe.prod.js"></script>
+  <script>
+document.querySelector("#start-btn").addEventListener("click", async () => {
+  const scene = document.querySelector("a-scene");
+  const mindarSystem = scene.systems["mindar-image-system"];
+
+  try {
+    await mindarSystem.start();
+    document.querySelector("#start-btn").style.display = "none";
+    console.log("Camera started ✅");
+  } catch (err) {
+    alert("Camera failed ❌: " + err);
+  }
+});
+</script>
 
   <style>
     html, body {
@@ -18,6 +32,22 @@
 
 <body>
 
+<button id="start-btn"
+  style="
+  position: fixed;
+  z-index: 999;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 15px 25px;
+  font-size: 18px;
+  background: #00c853;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  ">
+  Start AR 🚀
+</button>
 <a-scene
   mindar-image="imageTargetSrc: targets.mind;"
   vr-mode-ui="enabled: false"
@@ -54,6 +84,21 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("AR ERROR ❌");
     alert("Camera failed to start. Check permissions.");
   });
+});
+</script>
+
+<script>
+document.querySelector("#start-btn").addEventListener("click", async () => {
+  const scene = document.querySelector("a-scene");
+  const mindarSystem = scene.systems["mindar-image-system"];
+
+  try {
+    await mindarSystem.start();
+    document.querySelector("#start-btn").style.display = "none";
+    console.log("Camera started ✅");
+  } catch (err) {
+    alert("Camera failed ❌: " + err);
+  }
 });
 </script>
 
