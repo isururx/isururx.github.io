@@ -1,37 +1,127 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-look-at-component@1.0.0/dist/aframe-look-at-component.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-  </head>
+  <!-- AFRAME -->
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
 
-  <body style="margin:0; overflow:hidden;">
+  <!-- LOOK AT -->
+  <script src="https://unpkg.com/aframe-look-at-component@1.0.0/dist/aframe-look-at-component.min.js"></script>
 
-    <a-scene
-      vr-mode-ui="enabled: false"
-      embedded
-      arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
-    >
+  <!-- AR.js -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 
-      <!-- 3D MODEL -->
-      <a-entity
-        gps-entity-place="latitude: 6.830208; longitude: 80.030775;"
-        gltf-model="model.glb"
-        scale="5 5 5"
-        position="0 0 0"
-        look-at="[gps-camera]"
+  <style>
+    html, body {
+      margin: 0;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      background: black;
+    }
 
-        //animation="property: rotation; to: 0 360 0; loop: true; dur: 4000"
-      >
-      </a-entity>
+    canvas {
+      position: fixed !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      top: 0;
+      left: 0;
+    }
 
-      <!-- CAMERA -->
-      <a-camera gps-camera rotation-reader></a-camera>
+    #start-btn {
+      position: fixed;
+      z-index: 999;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 15px 25px;
+      font-size: 18px;
+      background: #00c853;
+      color: white;
+      border: none;
+      border-radius: 10px;
+    }
+  </style>
+</head>
 
-    </a-scene>
+<body>
 
-  </body>
+<!-- START BUTTON (IMPORTANT for mobile camera) -->
+<button id="start-btn">Start Campus AR 🚀</button>
+
+<a-scene
+  id="scene"
+  vr-mode-ui="enabled: false"
+  renderer="logarithmicDepthBuffer: true;"
+  arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
+>
+
+  <!-- 📦 3D MODEL -->
+  <a-entity
+    id="model"
+    gps-entity-place="latitude: 6.830156; longitude: 80.030700;"
+    gltf-model="model.glb"
+    scale="3 3 3"
+    position="0 1 0"
+    look-at="[gps-camera]"
+    visible="false"
+
+    animation__rotate="property: rotation; to: 0 360 0; loop: true; dur: 6000"
+    animation__float="property: position; dir: alternate; dur: 2500; to: 0 2 0; loop: true"
+
+    distance-hide
+  ></a-entity>
+
+  <!-- 🏷️ LABEL -->
+  <a-text
+    gps-entity-place="latitude: 6.830156; longitude: 80.030700;"
+    value="Library 📚"
+    look-at="[gps-camera]"
+    scale="50 50 50"
+    position="0 4 0"
+    color="yellow"
+    visible="false"
+    id="label"
+  ></a-text>
+
+  <!-- 📷 CAMERA -->
+  <a-camera gps-camera rotation-reader></a-camera>
+
+</a-scene>
+
+<script>
+/* START AR BUTTON */
+document.querySelector("#start-btn").addEventListener("click", () => {
+  document.querySelector("#start-btn").style.display = "none";
+
+  // show objects after start
+  document.querySelector("#model").setAttribute("visible", true);
+  document.querySelector("#label").setAttribute("visible", true);
+});
+
+/* DISTANCE CONTROL */
+AFRAME.registerComponent('distance-hide', {
+  init: function () {
+    this.camera = document.querySelector('[gps-camera]');
+  },
+  tick: function () {
+    if (!this.camera) return;
+
+    const camPos = this.camera.getAttribute('position');
+    const objPos = this.el.getAttribute('position');
+
+    if (!camPos || !objPos) return;
+
+    const dx = camPos.x - objPos.x;
+    const dz = camPos.z - objPos.z;
+    const distance = Math.sqrt(dx * dx + dz * dz);
+
+    // show only within 50 meters
+    this.el.setAttribute('visible', distance < 50);
+  }
+});
+</script>
+
+</body>
 </html>
